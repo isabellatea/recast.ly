@@ -1,41 +1,42 @@
 class App extends React.Component {
   constructor() {
-  	super();
-  	this.state = {
-  		videos: window.exampleVideoData,
-  		currentVideo: window.exampleVideoData[0]
-  	}
-  	this.setCurrentVideo = this.setCurrentVideo.bind(this);
+    super();
+    this.state = {
+      videos: window.exampleVideoData,
+      currentVideo: window.exampleVideoData[0]
+    };
+    this.setCurrentVideo = this.setCurrentVideo.bind(this);
   }
   
   setCurrentVideo(video) {
-  	this.setState({currentVideo: video})
+    this.setState({currentVideo: video});
   }
 
   componentDidMount() {
-
-
-  	window.searchYouTube({}, (data) => {
-  		console.log(data);
+    window.searchYouTube({}, (data) => {
       this.setState({
-      	videos: data.items,
-      	currentVideo: data.items[0]
-      })
-  	})
+        videos: data.items,
+        currentVideo: data.items[0]
+      });
+    });
   }
 
   render() {
-  	return (
-	  <div>
-	    <Nav />
-	    <div className="col-md-7">
-	      <VideoPlayer video={this.state.currentVideo} />
-	    </div>
-	    <div className="col-md-5">
-	      <VideoList videos={this.state.videos} setCurrentVideo={this.setCurrentVideo} />
-	    </div>
-	  </div>
-  	)
+    return (
+      <div>
+        <Nav />
+        <div className="container">
+          <div className="row">
+            <div className="col-md-7">
+              <VideoPlayer video={this.state.currentVideo} />
+            </div>
+            <div className="col-md-5">
+              <VideoList videos={this.state.videos} setCurrentVideo={this.setCurrentVideo} />
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   }
 } 
 

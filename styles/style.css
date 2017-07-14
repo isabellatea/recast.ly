@@ -70,3 +70,16 @@ body {
   font-size: 12px;
   color: #999;
 }
+
+/* Custom */
+.media {
+  flex-direction: column;
+}
+
+.media-middle {
+  float: left;
+}
+
+.media-object {
+  margin-right: 1rem;
+}
