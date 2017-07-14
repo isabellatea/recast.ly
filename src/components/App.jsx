@@ -12,6 +12,18 @@ class App extends React.Component {
   	this.setState({currentVideo: video})
   }
 
+  componentDidMount() {
+
+
+  	window.searchYouTube({}, (data) => {
+  		console.log(data);
+      this.setState({
+      	videos: data.items,
+      	currentVideo: data.items[0]
+      })
+  	})
+  }
+
   render() {
   	return (
 	  <div>
