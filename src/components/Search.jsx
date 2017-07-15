@@ -1,22 +1,19 @@
 class Search extends React.Component {
   constructor(props) {
     super(props);
+    this.debounced = _.debounce((e) => this.props.updateVideos(e.target.value), 1000).bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
-    // handleChange (e) {
-    //   _.debounce((event) => {
-    //     console.log('hi')
-    //      this.props.updateVideos(event.target.value), 1000)
-     //  }
-    // }
-  
+  handleChange(e) {
+    e.persist();
+    this.debounced(e);
+  }
 
   render () {
     return (
       <div className="search-bar form-inline">
-        <input id="form-control" className="form-control" type="text" onChange={
-          _.debounce(() => this.props.updateVideos(document.getElementById('form-control').value), 1000)
-        } />
+        <input className="form-control" type="text" onChange={this.handleChange}/>
         <button className="btn hidden-sm-down">
           <span className="glyphicon glyphicon-search"></span>
         </button>
