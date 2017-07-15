@@ -1,7 +1,7 @@
-var Nav = () => (
+var Nav = (props) => (
   <nav className="navbar">
     <div className="container">
-      <Search />
+      <Search updateVideos={props.updateVideos}/>
     </div>
   </nav>
 );

@@ -6,6 +6,7 @@ class App extends React.Component {
       currentVideo: window.exampleVideoData[0]
     };
     this.setCurrentVideo = this.setCurrentVideo.bind(this);
+    this.updateVideos = this.updateVideos.bind(this);
   }
   
   setCurrentVideo(video) {
@@ -13,7 +14,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    window.searchYouTube({}, (data) => {
+    this.updateVideos('');
+  }
+
+  updateVideos(query) {
+    window.searchYouTube({query}, (data) => {
       this.setState({
         videos: data.items,
         currentVideo: data.items[0]
@@ -24,7 +29,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Nav />
+        <Nav updateVideos={this.updateVideos}/>
         <div className="container">
           <div className="row">
             <div className="col-md-7">
